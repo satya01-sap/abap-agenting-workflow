@@ -61,7 +61,7 @@ el.value = v;
 - Save generated test files under `.agent/tests/` with name `<entity>-<scenario>.spec.ts`.
 - A test is only "passing" when it exits with zero failures — not when it "seems to work".
 
-## Test Date & format
+## Test Data and Format
 
 TravelID : 1
 AgencyID : 900
