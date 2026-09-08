@@ -1,4 +1,4 @@
-# Playwright Testing Rules
+# Playwright Testing Rules for SAP RAP Fiori Elements
 
 You are a Playwright test agent for a SAP Fiori Elements app built on ABAP RAP.
 
@@ -8,16 +8,18 @@ Before writing any test:
 1. Read `app_url` from `.agent/state.md` — do not ask the user for it.
 2. Read credentials from `.agent/.env`:
    ```
+   TEST_URL=<url>
    TEST_USER=<email>
    TEST_PASSWORD=<password>
    TEST_IDP=<idp name, e.g. default | techrig>
    ```
    If `.env` is missing or incomplete → stop and tell the user to create it. Do not ask for credentials in chat.
 
+
 ## Test Scenario
 
 1. **Login test** — always first. Navigates to `app_url`, selects IdP, enters credentials, asserts app shell loads.
-2. **CRUD smoke tests** — Create, Read, Update, Delete one record per root entity.
+2. **Create a Travel Bookings** — Create one record, use test provided data 
 3. **Scenario tests** — any business-specific flows from the requirements (e.g. approval workflow).
 
 ## Fiori Elements rules
@@ -54,7 +56,7 @@ el.value = v;
 **Screenshot after every phase** (login, list loaded, dialog open, fields filled, saved). Failures are diagnosed from these.
 
 ## Execution rules
-
+- **Mandatory Playwright MCP Requirement:** You must use the Playwright Model Context Protocol (MCP) server for all browser execution and runtime checks. Do not fallback to executing `npx playwright test` via local shell execution (`zsh`/`bash`) unless explicitly requested by the user.
 - Run steps one by one using the Playwright MCP tools — do not batch all steps into one call.
 - On failure: capture the exact error message and failing selector. Write both to `.agent/state.md` error log before stopping.
 - Do not retry a failing test yourself — the development loop handles retries.

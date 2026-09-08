@@ -41,7 +41,7 @@ Describe each entity, its key fields, and parent-child relationships.
 
 Example:
 - `Travel` (root): travel_id, customer_id, begin_date, end_date, status
-  - `Booking` (child of Travel): booking_id, flight_date, carrier_id, price
+- `Booking` (child of Travel): booking_id, flight_date, carrier_id, price
 
 [Answer]:
 - `Travel` (root), based on `/DMO/TRAVEL_DATA`

@@ -1,0 +1,12 @@
+.claude/
+.playwright-mcp/
+.vscode/
+node_modules/
+playwright-report/
+Prompts-backups/
+test-results/
+.mcp.json
+state.md
+playwright.config.ts
+
+
