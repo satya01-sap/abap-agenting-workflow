@@ -1,4 +1,4 @@
-# Basic ABAP RAP Fiori Elements Agentic Workflow (v2)
+# Basic ABAP RAP Fiori Elements Agentic Workflow
 
 **Purpose:** Your job is follow and run the below steps one by one to get the job done.  
 
@@ -27,14 +27,14 @@ Phase 5: Done        → Completion
 Ask User to provide the business requirement. **Do not skip this step** 
 
 **Agent Action:**
-- Check for .agent/requirements/requirements-clarification.md for the reference template. 
+- Check for `.agent/requirements/requirements-clarification.md` for the reference template. 
 
 
 **Success Criteria:** All fields answered, values validated (non-empty)
 
 ---
 
-## Phase 2: Generate RAP Objects
+## Phase 2: Generate ABAP RAP Objects
 
 **Goal:** Use ADT MCP Server to generate complete RAP layer  
 **Scope:** Database table → CDS → Behavior → Service → Binding
@@ -61,23 +61,21 @@ abap_atc_run
 - ✅ Zero P1 findings
 - ✅ P2 findings reviewed (if any)
 
+### Step 3.3: Publish Service Binding (Manual)
+
+**Goal:** Publish the generated service. 
+
+**Action:** Ask human user to -> open the open the Service Bindings and click on Publish  
+**Result:** Update `APP_URL` in `.agent/.env` with the published OData service URL
+
 ---
 
-## Phase 4: Test (Smoke Test)
-
-**Goal:** Verify app loads and responds to basic UI interaction
-
-### Step 4.1: Publish Service Binding (Manual)
-
-**Action:** In ADT, right-click service binding → Publish  
-**Result:** Update `TEST_URL` in `.agent/.env` with the published OData service URL
-
-### Step 4.2: Smoke Test
+### Step 4: Smoke Test
 
 **Goal:** Test the application using Playwright MCP tools directly.
 
 - Refer to `.agent/tests/test-rules.v2.md` for the exact tool call sequence.
-- `TEST_URL` is loaded automatically from `.agent/.env` by the Playwright MCP — do not read the file or pass the URL manually.
+- Read the test credentials and application url from `.agent/.env`.
 
 ---
 
@@ -124,7 +122,7 @@ Next Steps:
 @abap-test-agent run test
 ```
 
-> This invokes the Playwright MCP tools directly using `TEST_URL` from `.agent/.env`.
+> This invokes the Playwright MCP tools directly and read applicating url from `.agent/.env`.
 > No spec file is written. No shell command is run. See `.agent/tests/test-rules.v2.md`.
 
 ---
@@ -133,13 +131,12 @@ Next Steps:
 
 **Test Environment:** `.agent/.env`
 ```bash
-TEST_URL=https://...abap-web.eu10.hana.ondemand.com/.../flp.html
+APP_URL=https://...abap-web.eu10.hana.ondemand.com/.../flp.html
 TEST_USER=your_user@techrig
 TEST_PASSWORD=your_password
 TEST_IDP=techrig.accounts.ondemand.com
 ```
 
-> `TEST_URL` is the single source of truth for the app URL.
 > Do not duplicate it in `state.md`.
 
 ---

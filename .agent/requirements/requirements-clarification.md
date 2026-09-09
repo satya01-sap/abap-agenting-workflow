@@ -14,9 +14,9 @@ Which system/destination should objects be generated in?
 ## Q2 — Package
 A) Use existing package (provide name):
 B) Create new package (provide name + description):
-C) Save locally in `$TMP` (no transport needed)
 
-[Answer]: A) Use existing package: `ZCO_TRAVEL_001`
+
+[Answer]: ZCO_TRAVEL_112
 
 ---
 
@@ -25,14 +25,15 @@ A) Use existing TR (provide number, e.g. `DEVK900123`):
 B) Create new TR (provide short description):
 C) Not needed — using `$TMP`
 
-[Answer]: C) Not needed — local package, no transport
+[Answer]: Not needed in this system for package ZCO_TRAVEL_112
+
 
 ---
 
 ## Q4 — Group Suffix (`###`)
 What is your group/participant suffix? (e.g. `001`, `042`, `XYZ`)
 
-[Answer]: 001
+[Answer]: 112
 
 ---
 
@@ -43,18 +44,19 @@ Example:
 - `Travel` (root): travel_id, customer_id, begin_date, end_date, status
 - `Booking` (child of Travel): booking_id, flight_date, carrier_id, price
 
-[Answer]:
-- `Travel` (root), based on `/DMO/TRAVEL_DATA`
-- `Booking` (child of `Travel`), based on `/DMO/BOOKING_DATA`
+[Answer]: 
+- `Travel` (root): travel_id (key), customer_id, begin_date, end_date, overall_status, total_price
+- `Booking` (child of Travel): booking_id (secondary key), travel_id (foreign key), flight_date, carrier_id, connection_id, booking_fee, booking_status
+
 
 ---
 
 ## Q6 — Data Source
 A) Use existing database tables (provide names):
-B) Use DMO reference data (e.g. `/DMO/TRAVEL_DATA`):
+B) Use DMO reference structure (e.g. `/DMO/TRAVEL_DATA`):
 C) Generate new tables from entity definitions above
 
-[Answer]: B) Use DMO reference data: `/DMO/TRAVEL_DATA`, `/DMO/BOOKING_DATA`
+[Answer]: B) Use reference structure: `/DMO/TRAVEL_DATA` (Travel) and `/DMO/BOOKING_DATA` (Booking)
 
 ---
 
